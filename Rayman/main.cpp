@@ -8,7 +8,7 @@
 
 #define buttonFontSize 30
 
- // objects
+// objects
 game_system game;
 menu_system mainmenu;
 menu_system options;
@@ -62,43 +62,43 @@ int main()
 		if (game.ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
 		{
 			// If the user is in main menu
-			if (!mainmenu.done)
+			if (mainmenu.done)
 			{
 				if (game.ev.mouse.button & 1)					// If Left Button is clicked
 
-				if (mainmenu.overButton[1] == true) mainmenu.done = true;				// START
+				if (mainmenu.overButton[1] == true) mainmenu.done = false;				// START
 				if (mainmenu.overButton[2] == true)										// OPTIONS	
 				{
-					mainmenu.done = true;				
-					options.done = false;
+					mainmenu.done = false;
+					options.done = true;
 				}
 				if (mainmenu.overButton[3] == true) game.done = true;					// CREDITS
 				if (mainmenu.overButton[4] == true) game.done = true;					// QUIT
 			}
 
 			// If the user is in options
-			if (!options.done)
+			if (options.done)
 			{
 				if (game.ev.mouse.button & 1)					// If Left Button is clicked
 
 				if (options.overButton[1] == true)						                // BACK
 				{
-					options.done = true;
-					mainmenu.done = false;
+					options.done = false;
+					mainmenu.done = true;
 				}
 			}
 
 			// If the use pauses the game
-			if (!pause.done)
+			if (pause.done)
 			{
 				if (game.ev.mouse.button & 1)					// If Left Button is clicked
 
-					if (pause.overButton[1] == true) pause.done = true;					// RESUME
+				if (pause.overButton[1] == true) pause.done = false;					// RESUME
 
 				if (pause.overButton[2] == true)										// MAIN MENU
 				{
-					pause.done = true;
-					mainmenu.done = false;
+					pause.done = false;
+					mainmenu.done = true;
 				}
 
 				if (pause.overButton[3] == true) game.done = true;						// QUIT
@@ -109,9 +109,17 @@ int main()
 		// If ESCAPE key is pressed
 		if (game.ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE)
 		{
-			if (mainmenu.done)
+			if (!mainmenu.done)
 			{
-				if (pause.done) pause.done = false;
+				if (!pause.done && !options.done)
+				{
+					pause.done = true;
+				}
+				else if (options.done && !pause.done)
+				{
+					options.done = false;
+					mainmenu.done = true;
+				}
 			}
 		}
 
@@ -121,7 +129,13 @@ int main()
 			{
 				game.redraw = true;
 
-				if (!mainmenu.done)
+				if (mainmenu.done)
+				{
+				}
+				if (options.done)
+				{
+				}
+				if (pause.done)
 				{
 				}
 			}
@@ -130,7 +144,7 @@ int main()
 		if (game.redraw)															// Redraw drawn objects every timer tick
 		{
 			// If main menu is enabled
-			if (!mainmenu.done)
+			if (mainmenu.done)
 			{
 				for (int i = 1; i <= MM_BUTTON_NUMBER; i++)
 				{
@@ -145,8 +159,21 @@ int main()
 				al_draw_text(mainmenu.buttonFont, buttonTextColor[3], gameWidth / 2, mainmenu.y[3] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "CREDITS");
 				al_draw_text(mainmenu.buttonFont, buttonTextColor[4], gameWidth / 2, mainmenu.y[4] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "QUIT");
 			}
-			
-			if (!options.done)
+			if (pause.done)
+			{
+				for (int i = 1; i <= PAUSE_BUTTON_NUMBER; i++)
+				{
+					if (pause.overButton[i] == true) buttonTextColor[i] = color.black;
+					else buttonTextColor[i] = color.white;
+				}
+
+				pause.draw(gameWidth / 2 - (mainmenu.w / 2), 120);
+				pause.detectButtonHover(curX, curY);
+				al_draw_text(pause.buttonFont, buttonTextColor[1], gameWidth / 2, pause.y[1] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "RESUME");
+				al_draw_text(pause.buttonFont, buttonTextColor[2], gameWidth / 2, pause.y[2] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "MAIN MENU");
+				al_draw_text(pause.buttonFont, buttonTextColor[3], gameWidth / 2, pause.y[3] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "QUIT");
+			}
+			if (options.done)
 			{
 				for (int i = 1; i <= OPTIONS_BUTTON_NUMBER; i++)
 				{
@@ -157,24 +184,6 @@ int main()
 				options.draw(gameWidth / 2 + 500, 800);
 				options.detectButtonHover(curX, curY);
 				al_draw_text(options.buttonFont, buttonTextColor[1], gameWidth / 2 + 670, options.y[1] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "BACK");
-			}
-
-			else
-			{
-				if (!pause.done)
-				{
-					for (int i = 1; i <= PAUSE_BUTTON_NUMBER; i++)
-					{
-						if (pause.overButton[i] == true) buttonTextColor[i] = color.black;
-						else buttonTextColor[i] = color.white;
-					}
-
-					pause.draw(gameWidth / 2 - (mainmenu.w / 2), 120);
-					pause.detectButtonHover(curX, curY);
-					al_draw_text(pause.buttonFont, buttonTextColor[1], gameWidth / 2, pause.y[1] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "RESUME");
-					al_draw_text(pause.buttonFont, buttonTextColor[2], gameWidth / 2, pause.y[2] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "MAIN MENU");
-					al_draw_text(pause.buttonFont, buttonTextColor[3], gameWidth / 2, pause.y[3] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "QUIT");
-				}
 			}
 
 			al_flip_display();
@@ -193,9 +202,9 @@ int main()
 // (!) Initialize resources that can't be declared in their native classes
 int init()
 {
-	mainmenu.done = false;
-	options.done = true;
-	pause.done = true;
+	mainmenu.done = true;
+	options.done = false;
+	pause.done = false;
 
 	// These functions/variables doesn't need to be destroyed as they are destroyed
 	// automatically in their member functions
