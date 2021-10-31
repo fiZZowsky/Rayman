@@ -16,3 +16,4 @@ Zapisujemy zmiany do zdalnego repozytorium
 ```git
 git push -u origin master
 ```
+&nbsp;
