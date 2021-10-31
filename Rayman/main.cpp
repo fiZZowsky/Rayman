@@ -4,12 +4,14 @@
 
 #define MM_BUTTON_NUMBER 4
 #define PAUSE_BUTTON_NUMBER 3
+#define OPTIONS_BUTTON_NUMBER 1
 
 #define buttonFontSize 30
 
  // objects
 game_system game;
 menu_system mainmenu;
+menu_system options;
 menu_system pause;
 color_system color;
 
@@ -29,11 +31,13 @@ int main()
 	// Initialize class functions
 	game.init();
 	mainmenu.init();
+	options.init();
 	pause.init();
 	color.init();
 
 	init();
 	mainmenu.reserveButtonNum(MM_BUTTON_NUMBER);
+	options.reserveButtonNum(OPTIONS_BUTTON_NUMBER);
 	pause.reserveButtonNum(PAUSE_BUTTON_NUMBER);
 
 	// Game loops constantly if bool done of object game is false
@@ -62,10 +66,26 @@ int main()
 			{
 				if (game.ev.mouse.button & 1)					// If Left Button is clicked
 
-					if (mainmenu.overButton[1] == true) mainmenu.done = true;			// START
-				if (mainmenu.overButton[2] == true) game.done = true;					// OPTIONS
+				if (mainmenu.overButton[1] == true) mainmenu.done = true;				// START
+				if (mainmenu.overButton[2] == true)										// OPTIONS	
+				{
+					mainmenu.done = true;				
+					options.done = false;
+				}
 				if (mainmenu.overButton[3] == true) game.done = true;					// CREDITS
 				if (mainmenu.overButton[4] == true) game.done = true;					// QUIT
+			}
+
+			// If the user is in options
+			if (!options.done)
+			{
+				if (game.ev.mouse.button & 1)					// If Left Button is clicked
+
+				if (options.overButton[1] == true)						                // BACK
+				{
+					options.done = true;
+					mainmenu.done = false;
+				}
 			}
 
 			// If the use pauses the game
@@ -125,6 +145,19 @@ int main()
 				al_draw_text(mainmenu.buttonFont, buttonTextColor[3], gameWidth / 2, mainmenu.y[3] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "CREDITS");
 				al_draw_text(mainmenu.buttonFont, buttonTextColor[4], gameWidth / 2, mainmenu.y[4] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "QUIT");
 			}
+			
+			if (!options.done)
+			{
+				for (int i = 1; i <= OPTIONS_BUTTON_NUMBER; i++)
+				{
+					if (options.overButton[i] == true) buttonTextColor[i] = color.black;
+					else buttonTextColor[i] = color.white;
+				}
+
+				options.draw(gameWidth / 2 + 500, 800);
+				options.detectButtonHover(curX, curY);
+				al_draw_text(options.buttonFont, buttonTextColor[1], gameWidth / 2 + 670, options.y[1] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "BACK");
+			}
 
 			else
 			{
@@ -151,6 +184,7 @@ int main()
 
 	game.destroy();
 	mainmenu.destroy();
+	options.destroy();
 	pause.destroy();
 
 	return 0;
@@ -160,6 +194,7 @@ int main()
 int init()
 {
 	mainmenu.done = false;
+	options.done = true;
 	pause.done = true;
 
 	// These functions/variables doesn't need to be destroyed as they are destroyed
@@ -180,8 +215,24 @@ int init()
 	mainmenu.hoverButton = al_load_bitmap("over_button_001.png");
 
 	mainmenu.buttonFont = al_load_font("Roboto-thin.ttf", buttonFontSize, NULL);
-	// ----------------------------------------------------------------------------
 
+	// ----------------------------------------------------------------------------
+	// Options
+	options.background = al_load_bitmap("options_bg_001.jpg");
+
+	for (int i = 1; i <= OPTIONS_BUTTON_NUMBER; i++)
+	{
+		buttonTextColor[i] = color.white;
+		options.button[i] = al_load_bitmap("button_001.png");
+		options.w = al_get_bitmap_width(options.button[i]);
+		options.h = al_get_bitmap_height(options.button[i]);
+	}
+
+	options.hoverButton = al_load_bitmap("over_button_001.png");
+
+	options.buttonFont = al_load_font("Roboto-thin.ttf", buttonFontSize, NULL);
+
+	// ----------------------------------------------------------------------------
 	// Pause
 	pause.background = al_load_bitmap("pause_bg_001.jpg");
 
