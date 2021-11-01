@@ -12,6 +12,7 @@
 game_system game;
 menu_system mainmenu;
 menu_system options;
+menu_system credits;
 menu_system pause;
 color_system color;
 
@@ -32,6 +33,7 @@ int main()
 	game.init();
 	mainmenu.init();
 	options.init();
+	credits.init();
 	pause.init();
 	color.init();
 
@@ -66,13 +68,17 @@ int main()
 			{
 				if (game.ev.mouse.button & 1)					// If Left Button is clicked
 
-				if (mainmenu.overButton[1] == true) mainmenu.done = false;				// START
+				if (mainmenu.overButton[1] == true)	mainmenu.done = false;				// START
 				if (mainmenu.overButton[2] == true)										// OPTIONS	
 				{
 					mainmenu.done = false;
 					options.done = true;
 				}
-				if (mainmenu.overButton[3] == true) game.done = true;					// CREDITS
+				if (mainmenu.overButton[3] == true)										// CREDITS
+				{
+					mainmenu.done = false;
+					credits.done = true;
+				}
 				if (mainmenu.overButton[4] == true) game.done = true;					// QUIT
 			}
 
@@ -84,6 +90,18 @@ int main()
 				if (options.overButton[1] == true)						                // BACK
 				{
 					options.done = false;
+					mainmenu.done = true;
+				}
+			}
+
+			// If the user is in credits
+			if (credits.done)
+			{
+				if(game.ev.mouse.button & 1)
+
+				if (credits.overButton[1] == true)
+				{
+					credits.done = false;
 					mainmenu.done = true;
 				}
 			}
@@ -111,13 +129,22 @@ int main()
 		{
 			if (!mainmenu.done)
 			{
-				if (!pause.done && !options.done)
+				if (!pause.done && !options.done && !credits.done)
 				{
 					pause.done = true;
 				}
-				else if (options.done && !pause.done)
+				else if (pause.done && !options.done && !credits.done)
+				{
+					pause.done = false;
+				}
+				else if (options.done && !pause.done && !credits.done)
 				{
 					options.done = false;
+					mainmenu.done = true;
+				}
+				else if (credits.done && !pause.done && !options.done)
+				{
+					credits.done = false;
 					mainmenu.done = true;
 				}
 			}
@@ -136,6 +163,9 @@ int main()
 				{
 				}
 				if (pause.done)
+				{
+				}
+				if (credits.done)
 				{
 				}
 			}
@@ -185,6 +215,10 @@ int main()
 				options.detectButtonHover(curX, curY);
 				al_draw_text(options.buttonFont, buttonTextColor[1], gameWidth / 2 + 670, options.y[1] + buttonFontSize - 5, ALLEGRO_ALIGN_CENTER, "BACK");
 			}
+			if (credits.done)
+			{
+				credits.draw(gameWidth / 2 + 500, 800);
+			}
 
 			al_flip_display();
 			al_clear_to_color(color.black);
@@ -194,6 +228,7 @@ int main()
 	game.destroy();
 	mainmenu.destroy();
 	options.destroy();
+	credits.destroy();
 	pause.destroy();
 
 	return 0;
@@ -204,6 +239,7 @@ int init()
 {
 	mainmenu.done = true;
 	options.done = false;
+	credits.done = false;
 	pause.done = false;
 
 	// These functions/variables doesn't need to be destroyed as they are destroyed
@@ -240,6 +276,10 @@ int init()
 	options.hoverButton = al_load_bitmap("over_button_001.png");
 
 	options.buttonFont = al_load_font("Roboto-thin.ttf", buttonFontSize, NULL);
+
+	// ----------------------------------------------------------------------------
+	// Credits
+	credits.background = al_load_bitmap("options_bg_001.jpg");
 
 	// ----------------------------------------------------------------------------
 	// Pause
