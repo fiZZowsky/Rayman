@@ -13,7 +13,7 @@
 using namespace std;
 
 #define gameTitle "Rayman"
-#define gameVersion "v0.01 Pre-Alpha"
+#define gameVersion "v0.15 Pre-Alpha"
 #define gameWidth 1920
 #define gameHeight 1080
 

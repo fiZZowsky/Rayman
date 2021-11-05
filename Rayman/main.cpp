@@ -1,6 +1,9 @@
 ﻿#include "game_system.h"	 
 #include "menu_system.h"
 #include "color.h"
+#include "gamescreen.h"
+#include "inputmanager.h"
+#include "soundmanager.h"
 
 #define MM_BUTTON_NUMBER 4
 #define PAUSE_BUTTON_NUMBER 3
@@ -15,6 +18,9 @@ menu_system options;
 menu_system credits;
 menu_system pause;
 color_system color;
+InputManager input;
+SoundManager sound;
+GameScreen gameplay(&sound);
 
 // pre-defined functions
 int init();
@@ -36,6 +42,8 @@ int main()
 	credits.init();
 	pause.init();
 	color.init();
+
+	sound.playTheme();
 
 	init();
 	mainmenu.reserveButtonNum(MM_BUTTON_NUMBER);
@@ -123,6 +131,15 @@ int main()
 			}
 
 		}
+
+		if ((!mainmenu.done) && (!options.done) && (!pause.done) && (credits.done) && (game.ev.type == ALLEGRO_EVENT_TIMER)) {
+				gameplay.checkCollides();
+				al_clear_to_color(al_map_rgb(107, 140, 255));
+				gameplay.draw();
+				al_flip_display();
+		}
+
+		gameplay.update(game.ev);
 
 		// If ESCAPE key is pressed
 		if (game.ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE)
