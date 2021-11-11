@@ -16,6 +16,7 @@ using namespace std;
 #define gameVersion "v0.2 Pre-Alpha"
 #define gameWidth 1920
 #define gameHeight 1080
+#define V_SYNC true
 
 /*
  * This class is the core of the game.
