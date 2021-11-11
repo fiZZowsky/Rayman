@@ -1,9 +1,6 @@
 ﻿#include "game_system.h"	 
 #include "menu_system.h"
 #include "color.h"
-#include "gamescreen.h"
-#include "inputmanager.h"
-#include "soundmanager.h"
 
 #define MM_BUTTON_NUMBER 4
 #define PAUSE_BUTTON_NUMBER 3
@@ -18,9 +15,6 @@ menu_system options;
 menu_system credits;
 menu_system pause;
 color_system color;
-InputManager input;
-SoundManager sound;
-GameScreen gameplay(&sound);
 
 // pre-defined functions
 int init();
@@ -42,8 +36,6 @@ int main()
 	credits.init();
 	pause.init();
 	color.init();
-
-	sound.playTheme();
 
 	init();
 	mainmenu.reserveButtonNum(MM_BUTTON_NUMBER);
@@ -131,15 +123,6 @@ int main()
 			}
 
 		}
-
-		if ((!mainmenu.done) && (!options.done) && (!pause.done) && (credits.done) && (game.ev.type == ALLEGRO_EVENT_TIMER)) {
-				gameplay.checkCollides();
-				al_clear_to_color(al_map_rgb(107, 140, 255));
-				gameplay.draw();
-				al_flip_display();
-		}
-
-		gameplay.update(game.ev);
 
 		// If ESCAPE key is pressed
 		if (game.ev.keyboard.keycode == ALLEGRO_KEY_ESCAPE)
@@ -264,55 +247,55 @@ int init()
 
 	// ----------------------------------------------------------------------------
 	// Main Menu
-	mainmenu.background = al_load_bitmap("main_menu_bg_001.jpg");
+	mainmenu.background = al_load_bitmap("res/backgrounds/main_menu_bg_001.jpg");
 
 	for (int i = 1; i <= MM_BUTTON_NUMBER; i++)
 	{
 		buttonTextColor[i] = color.white;
-		mainmenu.button[i] = al_load_bitmap("button_001.png");
+		mainmenu.button[i] = al_load_bitmap("res/buttons/button_001.png");
 		mainmenu.w = al_get_bitmap_width(mainmenu.button[i]);
 		mainmenu.h = al_get_bitmap_height(mainmenu.button[i]);
 	}
 
-	mainmenu.hoverButton = al_load_bitmap("over_button_001.png");
+	mainmenu.hoverButton = al_load_bitmap("res/buttons/over_button_001.png");
 
-	mainmenu.buttonFont = al_load_font("Roboto-thin.ttf", buttonFontSize, NULL);
+	mainmenu.buttonFont = al_load_font("res/fonts/Roboto-thin.ttf", buttonFontSize, NULL);
 
 	// ----------------------------------------------------------------------------
 	// Options
-	options.background = al_load_bitmap("options_bg_001.jpg");
+	options.background = al_load_bitmap("res/backgrounds/options_bg_001.jpg");
 
 	for (int i = 1; i <= OPTIONS_BUTTON_NUMBER; i++)
 	{
 		buttonTextColor[i] = color.white;
-		options.button[i] = al_load_bitmap("button_001.png");
+		options.button[i] = al_load_bitmap("res/buttons/button_001.png");
 		options.w = al_get_bitmap_width(options.button[i]);
 		options.h = al_get_bitmap_height(options.button[i]);
 	}
 
-	options.hoverButton = al_load_bitmap("over_button_001.png");
+	options.hoverButton = al_load_bitmap("res/buttons/over_button_001.png");
 
-	options.buttonFont = al_load_font("Roboto-thin.ttf", buttonFontSize, NULL);
+	options.buttonFont = al_load_font("res/fonts/Roboto-thin.ttf", buttonFontSize, NULL);
 
 	// ----------------------------------------------------------------------------
 	// Credits
-	credits.background = al_load_bitmap("options_bg_001.jpg");
+	credits.background = al_load_bitmap("res/backgrounds/options_bg_001.jpg");
 
 	// ----------------------------------------------------------------------------
 	// Pause
-	pause.background = al_load_bitmap("pause_bg_001.jpg");
+	pause.background = al_load_bitmap("res/backgrounds/pause_bg_001.jpg");
 
 	for (int i = 1; i <= PAUSE_BUTTON_NUMBER; i++)
 	{
 		buttonTextColor[i] = color.white;
-		pause.button[i] = al_load_bitmap("button_001.png");
+		pause.button[i] = al_load_bitmap("res/buttons/button_001.png");
 		pause.w = al_get_bitmap_width(pause.button[i]);
 		pause.h = al_get_bitmap_height(pause.button[i]);
 	}
 
-	pause.hoverButton = al_load_bitmap("over_button_001.png");
+	pause.hoverButton = al_load_bitmap("res/buttons/over_button_001.png");
 
-	pause.buttonFont = al_load_font("Roboto-thin.ttf", buttonFontSize, NULL);
+	pause.buttonFont = al_load_font("res/fonts/Roboto-thin.ttf", buttonFontSize, NULL);
 
 	//-----------------------------------------------------------------------------
 
