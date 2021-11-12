@@ -1,4 +1,6 @@
 #include "game_system.h"
+#include "point2d.h"
+#include "gameobjectbase.h"
 
 
 game_system::game_system(void)
@@ -70,4 +72,31 @@ int game_system::destroy()
 	al_destroy_timer(timer);
 
 	return 0;
+}
+
+void game_system::KeyUp(WPARAM wParam)
+{
+}
+
+void game_system::KeyDown(WPARAM wParam)
+{
+}
+
+void game_system::AddGameObject(GameObjectBase* gameObj)
+{
+	gameObj->gameplay = this;
+	objectList.push_back(gameObj);
+}
+
+void game_system::RemoveGameObject(GameObjectBase* gameObj)
+{
+	objectList.remove(gameObj);
+}
+
+void game_system::Logic()
+{
+	std::initializer_list<GameObjectBase*>::iterator iter;
+
+	for (iter = objectList.begin(); iter != objectList.end(); iter++)
+		(*iter)->Logic();
 }

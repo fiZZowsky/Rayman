@@ -18,11 +18,6 @@ public:
 private:
     ALLEGRO_BITMAP* tileSetImg;
     ALLEGRO_BITMAP* charSetImg;
-    /*
-    IDWriteFactory* m_pDWriteFactory;
-    IDWriteTextFormat* m_pTextFormat1;
-    IDWriteTextFormat* m_pTextFormat2;
-    ID2D1SolidColorBrush* m_pWhiteBrush;*/
 
     int lives;
     int coins;

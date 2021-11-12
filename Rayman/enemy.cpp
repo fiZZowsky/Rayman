@@ -65,20 +65,23 @@ CollisionDistances Enemy::CharacterCollides(Character* character)
 
 void Enemy::Draw()
 {
+	ALLEGRO_BITMAP* rectangle1;
+	ALLEGRO_BITMAP* rectangle2;
+
 	if (enemySetImg == NULL) // loads the tileset if needed
 	{
 		enemySetImg = al_load_bitmap("res/enemies/enemy.png");
 	}
-	/*
-	D2D1_RECT_F rectangle1 = D2D1::RectF(
-		position.x - Engine::offset - ENEMY_WIDTH / 2, position.y - ENEMY_HEIGHT,
-		position.x - Engine::offset + ENEMY_WIDTH / 2 - 1, position.y
+	
+	rectangle1 = al_draw_filled_rectangle(
+		position.x - gameplay::offset - ENEMY_WIDTH / 2, position.y - ENEMY_HEIGHT,
+		position.x - gameplay::offset + ENEMY_WIDTH / 2 - 1, position.y
 	);
 
 	int posX = (int)position.x % 20 / 10 + (forward ? 2 : 0);
 	int posY = enemyType;
 
-	D2D1_RECT_F rectangle2 = D2D1::RectF(
+	rectangle2 = al_draw_filled_rectangle(
 		posX * ENEMY_WIDTH, posY * ENEMY_HEIGHT,
 		(posX + 1) * ENEMY_WIDTH - 1, (posY + 1) * ENEMY_HEIGHT - 1
 	);
@@ -86,4 +89,3 @@ void Enemy::Draw()
 	// drawing the enemy
 	m_pRenderTarget->DrawBitmap(enemySetImg, rectangle1, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, rectangle2);
 }
-*/

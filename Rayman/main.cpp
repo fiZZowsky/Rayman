@@ -1,5 +1,6 @@
 ﻿#include "game_system.h"	 
 #include "menu_system.h"
+#include "gameplay.h"
 #include "color.h"
 
 #define MM_BUTTON_NUMBER 4
@@ -37,6 +38,8 @@ int main()
 	pause.init();
 	color.init();
 
+	Gameplay Gameplay;
+
 	init();
 	mainmenu.reserveButtonNum(MM_BUTTON_NUMBER);
 	options.reserveButtonNum(OPTIONS_BUTTON_NUMBER);
@@ -68,7 +71,10 @@ int main()
 			{
 				if (game.ev.mouse.button & 1)					// If Left Button is clicked
 
-				if (mainmenu.overButton[1] == true)	mainmenu.done = false;				// START
+				if (mainmenu.overButton[1] == true)										// START
+				{
+					mainmenu.done = false;
+				}
 				if (mainmenu.overButton[2] == true)										// OPTIONS	
 				{
 					mainmenu.done = false;
@@ -157,15 +163,6 @@ int main()
 				game.redraw = true;
 
 				if (mainmenu.done)
-				{
-				}
-				if (options.done)
-				{
-				}
-				if (pause.done)
-				{
-				}
-				if (credits.done)
 				{
 				}
 			}

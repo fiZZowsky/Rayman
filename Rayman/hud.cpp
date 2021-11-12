@@ -1,6 +1,7 @@
 #include "collision_distances.h"
 #include "character.h"
 #include "hud.h"
+#include "gameplay.h"
 
 HUD::HUD()
 {
@@ -13,17 +14,17 @@ void HUD::FinishedLevel()
 {
 	success = true;
 }
-/*
+
 void HUD::Draw()
 {
 	// load any images and D2D resources if they are not already loaded
 	if (tileSetImg == NULL)
 	{
-		tileSetImg = engine->LoadImageW(L"tileset.png");
+		tileSetImg = gameplay->LoadImageW(L"tileset.png");
 	}
 	if (charSetImg == NULL)
 	{
-		charSetImg = engine->LoadImageW(L"characters.png");
+		charSetImg = gameplay->LoadImageW(L"characters.png");
 	}
 	if (m_pTextFormat1 == NULL || m_pTextFormat2 == NULL)
 	{
@@ -68,17 +69,19 @@ void HUD::Draw()
 	}
 
 	// Draw number of coins
-	D2D1_RECT_F rectangle1 = D2D1::RectF(
-		5, 0,
-		5 + TILE_WIDTH / 2, TILE_WIDTH / 2
+	ALLEGRO_BITMAP* rectangle1;
+	ALLEGRO_BITMAP* rectangle2;
+
+	rectangle1 = al_draw_filled_rectangle(
+		5, 0, 5 + TILE_WIDTH / 2, TILE_WIDTH / 2
 	);
-	D2D1_RECT_F rectangle2 = D2D1::RectF(
+	rectangle2 = al_draw_filled_rectangle(
 		5 * TILE_WIDTH, 7 * TILE_WIDTH,
 		6 * TILE_WIDTH - 1, 8 * TILE_WIDTH - 1
 	);
 	m_pRenderTarget->DrawBitmap(tileSetImg, rectangle1, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, rectangle2);
 
-	rectangle1 = D2D1::RectF(
+	rectangle1 = al_draw_filled_rectangle(
 		5 + TILE_WIDTH / 2, 0,
 		5 + 5 * TILE_WIDTH / 2, TILE_WIDTH / 2
 	);
@@ -95,17 +98,17 @@ void HUD::Draw()
 
 
 	// Draw number of lives
-	rectangle1 = D2D1::RectF(
+	rectangle1 = al_draw_filled_rectangle(
 		5, TILE_WIDTH / 2,
 		5 + CHARACTER_WIDTH / 2, CHARACTER_HEIGHT / 2 + TILE_WIDTH / 2
 	);
-	rectangle2 = D2D1::RectF(
+	rectangle2 = al_draw_filled_rectangle(
 		0, 3 * CHARACTER_TILE_HEIGHT - CHARACTER_HEIGHT,
 		TILE_WIDTH - 1, 3 * CHARACTER_TILE_HEIGHT - 1
 	);
 	m_pRenderTarget->DrawBitmap(charSetImg, rectangle1, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, rectangle2);
 
-	rectangle1 = D2D1::RectF(
+	rectangle1 = al_draw_filled_rectangle(
 		5 + TILE_WIDTH / 2, TILE_WIDTH / 2,
 		5 + 4 * TILE_WIDTH / 2 + CHARACTER_WIDTH / 2, CHARACTER_HEIGHT / 2 + TILE_WIDTH / 2
 	);
@@ -122,9 +125,9 @@ void HUD::Draw()
 	// Draw Game Over if no more lives left
 	if (lives == 0)
 	{
-		rectangle1 = D2D1::RectF(
+		rectangle1 = al_draw_filled_rectangle(
 			0, 0,
-			RESOLUTION_X, RESOLUTION_Y
+			gameWidth, gameHeight
 		);
 		swprintf_s(scoreStr, L"GAME OVER");
 		m_pRenderTarget->DrawText(
@@ -140,9 +143,9 @@ void HUD::Draw()
 	// Draw Congratulations if you got out of the level
 	if (success)
 	{
-		rectangle1 = D2D1::RectF(
+		rectangle1 = al_draw_filled_rectangle(
 			0, 0,
-			RESOLUTION_X, RESOLUTION_Y
+			gameWidth, gameHeight
 		);
 		swprintf_s(scoreStr, L"CONGRATULATIONS!");
 		m_pRenderTarget->DrawText(
@@ -154,7 +157,7 @@ void HUD::Draw()
 		);
 	}
 }
-*/
+
 void HUD::AddCoins(int addCoins)
 {
 	coins += addCoins;

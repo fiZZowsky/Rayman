@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Point2D.h"
+#include "game_system.h"
+#include "point2d.h"
 
 class GameObjectBase
 {
@@ -11,6 +12,8 @@ public:
 	virtual void Draw() {}
 
 	Point2D GetPosition();
+
+	game_system* gameplay;
 
 protected:
 	Point2D position;

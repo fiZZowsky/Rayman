@@ -3,6 +3,8 @@
 class Character;
 
 #include "collision_distances.h"
+#include "gameplay.h"
+#include "gameobjectbase.h"
 
 #define ENEMY_WIDTH 50
 #define ENEMY_HEIGHT 50
@@ -18,7 +20,7 @@ public:
 	CollisionDistances CharacterCollides(Character* character);
 
 private:
-	//ID2D1Bitmap* enemySetImg;
+	ALLEGRO_BITMAP* enemySetImg;
 
 	double min, max;
 

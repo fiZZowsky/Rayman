@@ -1,5 +1,8 @@
 #pragma once
 
+#include "game_system.h"
+#include "gameobjectbase.h"
+
 #define CHARACTER_WIDTH 134
 #define CHARACTER_HEIGHT 184
 #define CHARACTER_TILE_HEIGHT 200
@@ -25,10 +28,10 @@ public:
 	bool GoesRight;
 
 private:
-	/*ID2D1Bitmap* tileSetImg;
+	ALLEGRO_BITMAP* tileSetImg;
 
 	Point2D speed;
-	Point2D prevPosition;*/
+	Point2D prevPosition;
 
 	bool forward;
 	bool dead;

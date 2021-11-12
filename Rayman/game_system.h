@@ -47,6 +47,12 @@ public:
 
 	float fps;
 
+	void AddGameObject(GameObjectBase* gameObj);
+	void RemoveGameObject(GameObjectBase* gameObj);
+	virtual void Logic();
+	virtual void KeyUp(WPARAM wParam);
+	virtual void KeyDown(WPARAM wParam);
+
 	int init();
 	int destroy();
 };

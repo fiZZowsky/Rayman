@@ -1,11 +1,10 @@
 #include "collision_distances.h"
 #include "character.h"
 #include "level.h"
-#include "game_system.h"
+#include "gameplay.h"
 
 Level::Level()
 {
-
 	// Default nothing map
 	for (int i = 0; i < LEVEL_HEIGHT; i++)
 	{
@@ -33,34 +32,38 @@ Level::Level()
 		}
 	}
 }
-/*
+
 void Level::Draw()
 {
+	ALLEGRO_BITMAP* cloudsRect1;
+	ALLEGRO_BITMAP* cloudsRect2;
+	ALLEGRO_BITMAP* rectangle1;
+	ALLEGRO_BITMAP* rectangle2;
 
 	// Loads images if needed
 	if (tileSetImg == NULL)
 	{
-		tileSetImg = engine->LoadImageW("res/map/tileset.png");
+		tileSetImg = gamplay->LoadImageW("res/map/tileset.png");
 	}
 
 	if (cloudsImg == NULL)
 	{
-		cloudsImg = engine->LoadImageW("res/map/clouds.png");
+		cloudsImg = gameplay->LoadImageW("res/map/clouds.png");
 	}
 
 	// Draw the Clouds, but only offset them by half, to implement parallaxing
-	double start_x = Engine::offset / 2.0;
-	while (start_x > RESOLUTION_X)
+	double start_x = gameplay::offset / 2.0;
+	while (start_x > gameWidth)
 	{
-		start_x -= RESOLUTION_X;
+		start_x -= gameWidth;
 	}
-	D2D1_RECT_F cloudsRect1 = D2D1::RectF(
+	cloudsRect1 = al_draw_filled_rectangle(
 		0 - start_x, 0,
-		RESOLUTION_X - start_x, RESOLUTION_Y
+		gameWidth - start_x, gameHeight
 	);
-	D2D1_RECT_F cloudsRect2 = D2D1::RectF(
-		RESOLUTION_X - start_x, 0,
-		2 * RESOLUTION_X - start_x, RESOLUTION_Y
+	cloudsRect2 = al_draw_filled_rectangle(
+		gameWidth - start_x, 0,
+		2 * gameWidth - start_x, gameHeight
 	);
 	m_pRenderTarget->DrawBitmap(cloudsImg, cloudsRect1);
 	m_pRenderTarget->DrawBitmap(cloudsImg, cloudsRect2);
@@ -70,19 +73,19 @@ void Level::Draw()
 	{
 		for (int j = 0; j < LEVEL_WIDTH; j++)
 		{
-			if ((j + 1) * TILE_WIDTH >= Engine::offset && j * TILE_WIDTH < Engine::offset + RESOLUTION_X)
+			if ((j + 1) * TILE_WIDTH >= Gameplay::offset && j * TILE_WIDTH < Gameplay::offset + gameWidth)
 			{
 				if (levelMatrix[i][j] != -1)
 				{
-					D2D1_RECT_F rectangle1 = D2D1::RectF(
-						j * TILE_WIDTH - Engine::offset, i * TILE_WIDTH,
-						(j + 1) * TILE_WIDTH - Engine::offset + 1, (i + 1) * TILE_WIDTH
+					rectangle1 = al_draw_filled_rectangle(
+						j * TILE_WIDTH - Gameplay::offset, i * TILE_WIDTH,
+						(j + 1) * TILE_WIDTH - Gameplay::offset + 1, (i + 1) * TILE_WIDTH
 					);
 
 					int posY = levelMatrix[i][j] / 7;
 					int posX = levelMatrix[i][j] % 7;
 
-					D2D1_RECT_F rectangle2 = D2D1::RectF(
+					rectangle2 = al_draw_filled_rectangle(
 						posX * TILE_WIDTH, posY * TILE_WIDTH,
 						posX * TILE_WIDTH + TILE_WIDTH - 1, posY * TILE_WIDTH + TILE_WIDTH - 1
 					);
@@ -93,7 +96,7 @@ void Level::Draw()
 		}
 	}
 }
-*/
+
 CollisionDistances Level::CharacterCollides(Character* character)
 {
 	// this returns collision details between the character and the tiles

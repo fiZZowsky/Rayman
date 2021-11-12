@@ -154,6 +154,7 @@
     <ClCompile Include="color.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="gameobjectbase.cpp" />
+    <ClCompile Include="gameplay.cpp" />
     <ClCompile Include="game_system.cpp" />
     <ClCompile Include="hud.cpp" />
     <ClCompile Include="level.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="color.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="gameobjectbase.h" />
+    <ClInclude Include="gameplay.h" />
     <ClInclude Include="game_system.h" />
     <ClInclude Include="hud.h" />
     <ClInclude Include="level.h" />
