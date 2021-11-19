@@ -166,14 +166,16 @@ void Character::Reset()
 
 void Character::Draw()
 {
+	ALLEGRO_BITMAP* rectangle1;
 	ALLEGRO_BITMAP* rectangle2;
+
 	if (tileSetImg == NULL) // loads the character image if not already loaded
 	{
 		tileSetImg = al_load_bitmap("res/character/mario.png");
 	}
 
 	// destination for draing
-	D2D1_RECT_F rectangle1 = D2D1::RectF(
+	rectangle1 = al_draw_filled_rectangle(
 		position.x - gameplay::offset - CHARACTER_WIDTH / 2, position.y - CHARACTER_TILE_HEIGHT,
 		position.x - gameplay::offset + CHARACTER_WIDTH / 2 - 1, position.y
 	);

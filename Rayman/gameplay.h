@@ -5,6 +5,7 @@
 #include "enemy.h"
 #include "character.h"
 #include "hud.h"
+#include <Windows.h>
 
 class Gameplay : public game_system
 {
