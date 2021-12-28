@@ -1,2 +1,10 @@
-﻿  Engine.cpp
+﻿  Character.cpp
+C:\Users\Asus\Desktop\Rayman\Character.cpp(178,66): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Character.cpp(178,53): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Character.cpp(177,65): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Character.cpp(177,31): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Character.cpp(205,72): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Character.cpp(205,32): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Character.cpp(204,32): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Character.cpp(204,8): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
   Game.vcxproj -> C:\Users\Asus\Desktop\Rayman\x64\Debug\Game.exe

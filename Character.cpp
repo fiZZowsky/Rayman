@@ -6,7 +6,7 @@
 Character::Character()
 {
 	position.x = 150;
-	position.y = RESOLUTION_Y / 2 - 250;
+	position.y = RESOLUTION_Y / 2 + 260;
 
 	speed.x = 0;
 	speed.y = 0;
@@ -153,7 +153,7 @@ void Character::Reset()
 {
 	// resets the character at the beginning of the level
 	position.x = 150;
-	position.y = RESOLUTION_Y / 2 - 250;
+	position.y = RESOLUTION_Y / 2 + 260;
 
 	speed.x = 0;
 	speed.y = 0;
