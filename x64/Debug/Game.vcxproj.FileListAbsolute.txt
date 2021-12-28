@@ -1,2 +1,3 @@
 C:\Users\Asus\Desktop\2D-Platformer-master\x64\Debug\Game.exe
 C:\Users\Asus\Documents\Zajęcia\Rok 2\Semestr 3\Programowanie w języku C 2\Projekt\2D-Platformer-master\x64\Debug\Game.exe
+C:\Users\Asus\Desktop\Rayman\x64\Debug\Game.exe

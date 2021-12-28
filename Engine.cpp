@@ -19,11 +19,11 @@ Engine::Engine()
 
     // Initialize enemies
     noEnemies = 3;
-    enemies[0] = new Enemy(425, 350, 625, 0);
+    enemies[0] = new Enemy(425, 800, 625, 0);
     AddGameObject(enemies[0]);
-    enemies[1] = new Enemy(1475, 150, 1525, 7);
+    enemies[1] = new Enemy(1475, 600, 1525, 7);
     AddGameObject(enemies[1]);
-    enemies[2] = new Enemy(3275, 300, 3475, 11);
+    enemies[2] = new Enemy(3275, 750, 3475, 11);
     AddGameObject(enemies[2]);
 
     // Initialize HUD
