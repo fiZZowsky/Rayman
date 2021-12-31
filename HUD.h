@@ -25,6 +25,7 @@ private:
     IDWriteTextFormat* m_pTextFormat1;
     IDWriteTextFormat* m_pTextFormat2;
     ID2D1SolidColorBrush* m_pWhiteBrush;
+    ID2D1SolidColorBrush* m_pBlackBrush;
 
     int lives;
     int coins;

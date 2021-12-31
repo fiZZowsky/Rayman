@@ -8,7 +8,7 @@ class Character;
 #include "EngineBase.h"
 #include "GameObjectBase.h"
 
-#define LEVEL_WIDTH 100
+#define LEVEL_WIDTH 123
 #define LEVEL_HEIGHT 22
 #define TILE_WIDTH 50
 

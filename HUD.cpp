@@ -68,6 +68,13 @@ void HUD::Draw(ID2D1HwndRenderTarget* m_pRenderTarget)
 			&m_pWhiteBrush
 		);
 	}
+	if (m_pBlackBrush == NULL)
+	{
+		m_pRenderTarget->CreateSolidColorBrush(
+			D2D1::ColorF(D2D1::ColorF::Black),
+			&m_pBlackBrush
+		);
+	}
 
 	// Draw number of coins
 	D2D1_RECT_F rectangle1 = D2D1::RectF(
@@ -128,13 +135,15 @@ void HUD::Draw(ID2D1HwndRenderTarget* m_pRenderTarget)
 			0, 0,
 			RESOLUTION_X, RESOLUTION_Y
 		);
+
+		m_pRenderTarget->FillRectangle(rectangle1, m_pWhiteBrush);
 		swprintf_s(scoreStr, L"GAME OVER");
 		m_pRenderTarget->DrawText(
 			scoreStr,
 			9,
 			m_pTextFormat2,
 			rectangle1,
-			m_pWhiteBrush
+			m_pBlackBrush
 		);
 	}
 
@@ -146,13 +155,14 @@ void HUD::Draw(ID2D1HwndRenderTarget* m_pRenderTarget)
 			0, 0,
 			RESOLUTION_X, RESOLUTION_Y
 		);
+		m_pRenderTarget->FillRectangle(rectangle1, m_pWhiteBrush);
 		swprintf_s(scoreStr, L"CONGRATULATIONS!");
 		m_pRenderTarget->DrawText(
 			scoreStr,
 			16,
 			m_pTextFormat2,
 			rectangle1,
-			m_pWhiteBrush
+			m_pBlackBrush
 		);
 	}
 }

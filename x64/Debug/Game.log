@@ -1,4 +1,5 @@
-﻿  Character.cpp
+﻿  App.cpp
+  Character.cpp
 C:\Users\Asus\Desktop\Rayman\Character.cpp(178,66): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
 C:\Users\Asus\Desktop\Rayman\Character.cpp(178,53): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
 C:\Users\Asus\Desktop\Rayman\Character.cpp(177,65): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
@@ -7,4 +8,29 @@ C:\Users\Asus\Desktop\Rayman\Character.cpp(205,72): warning C4244: "argument": k
 C:\Users\Asus\Desktop\Rayman\Character.cpp(205,32): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
 C:\Users\Asus\Desktop\Rayman\Character.cpp(204,32): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
 C:\Users\Asus\Desktop\Rayman\Character.cpp(204,8): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+  Enemy.cpp
+C:\Users\Asus\Desktop\Rayman\Enemy.cpp(78,62): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Enemy.cpp(78,49): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Enemy.cpp(77,61): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Enemy.cpp(77,31): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Enemy.cpp(86,59): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Enemy.cpp(86,28): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Enemy.cpp(85,28): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Enemy.cpp(85,8): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+  Engine.cpp
+  HUD.cpp
+  Level.cpp
+C:\Users\Asus\Desktop\Rayman\Level.cpp(60,16): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Level.cpp(59,5): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Level.cpp(64,20): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Level.cpp(63,16): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Level.cpp(80,58): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Level.cpp(80,45): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Level.cpp(79,42): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Level.cpp(79,22): warning C4244: "argument": konwersja z "double" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Level.cpp(88,74): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Level.cpp(88,38): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Level.cpp(87,31): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+C:\Users\Asus\Desktop\Rayman\Level.cpp(87,12): warning C4244: "argument": konwersja z "int" do "FLOAT", możliwa utrata danych
+  Generowanie kodu...
   Game.vcxproj -> C:\Users\Asus\Desktop\Rayman\x64\Debug\Game.exe

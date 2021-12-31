@@ -18,7 +18,7 @@ Engine::Engine()
     AddGameObject(character);
 
     // Initialize enemies
-    noEnemies = 5;
+    noEnemies = 9;
     enemies[0] = new Enemy(425, 800, 625, 0);
     AddGameObject(enemies[0]);
     enemies[1] = new Enemy(1475, 600, 1525, 7);
@@ -29,6 +29,14 @@ Engine::Engine()
     AddGameObject(enemies[3]);
     enemies[4] = new Enemy(1225, 950, 1500, 0);
     AddGameObject(enemies[4]);
+    enemies[5] = new Enemy(3575, 750, 4075, 7);
+    AddGameObject(enemies[5]);
+    enemies[6] = new Enemy(4475, 950, 4625, 11);
+    AddGameObject(enemies[6]);
+    enemies[7] = new Enemy(4925, 950, 4975, 0);
+    AddGameObject(enemies[7]);
+    enemies[8] = new Enemy(5075, 950, 5125, 11);
+    AddGameObject(enemies[8]);
 
     // Initialize HUD
     hud = new HUD();
@@ -158,7 +166,7 @@ void Engine::Logic(double elapsedTime)
     else
     {
         // if the character is dead (floating up) and it hits the top of the screen, we can reset (if we still have lives)
-        if (character->GetPosition().y < 0 && hud->HasLives())
+        if (character->GetPosition().y < 400 && hud->HasLives())
         {
             character->Reset();
         }
