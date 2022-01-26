@@ -5,6 +5,7 @@
 #include "Settings.h"
 #include "Engine.h"
 #include "App.h"
+#include <cstdlib>
 
 #pragma comment(lib, "d2d1")
 
@@ -25,7 +26,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         
         CoUninitialize();
     }
-
+    system("pause");
     return 0;
 }
 
