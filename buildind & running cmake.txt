@@ -1,0 +1,3 @@
+cmake ../Rayman
+cmake --build C:\Users\Asus\Desktop\Rayman   //ścieżka odpowiednia do miejsca zapisania repozytorium na komputerze
+./Game
